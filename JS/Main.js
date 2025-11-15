@@ -236,7 +236,7 @@ document.querySelectorAll(".player-card").forEach(card => {
       title: "CS 1 vs 1",
       date: "Жовтень 25, 2025 • 19:00",
       status: "completed", // "live" | "upcoming" | "completed"
-      image: "/photo/cs21v1.png",
+      image: "./photo/cs21v1.png",
       winner: "Ilty",
       description: "Локальний турнір серед гравців команди. Напружені поєдинки та відмінні перестрілки.",
       brackets: [
@@ -464,5 +464,6 @@ document.querySelectorAll(".player-card").forEach(card => {
   modal.querySelector(".modal-backdrop")?.addEventListener("click", closeModal);
 
 })();
+
 
 
