@@ -101,7 +101,7 @@ if (discordButton) {
 "/* ===== ДОДАВАННЯ ІНФОРМАЦІЇ ПРО ГРАВЦІВ ===== */"
 const playersInfo = {
   "Waysiemens": {
-    description: "Лідер команди, відповідає за стратегію, організацію і координацію гравців. Має великий досвід і стабільну стрілецьку форму.",
+    description: "Надихаючий лідер і капітан цього корабля.",
     socials: {
       steam: "https://steamcommunity.com/id/waysiemens/",
       discord: "https://discord.gg/example",
@@ -109,7 +109,7 @@ const playersInfo = {
     }
   },
   "SMAKOVV": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Майстер агресії та енергії, завжди йде першим.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199237357499",
       instagram: "",
@@ -117,7 +117,7 @@ const playersInfo = {
     }
   },
   "Bareski": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Стратег і душа компанії, знає, як повернути бій на свою користь.",
     socials: {
       steam: "https://steamcommunity.com/id/bAresk1",
       instagram: "",
@@ -125,7 +125,7 @@ const playersInfo = {
     }
   },
   "Edgar": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Джерело позитиву та адреналіну, робить атмосферу живою.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199139831895",
       instagram: "",
@@ -133,7 +133,7 @@ const playersInfo = {
     }
   },
   "Mental": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Аналітик і філософ команди, бачить глибше за інших.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561198949993671",
       instagram: "",
@@ -141,7 +141,7 @@ const playersInfo = {
     }
   },
   "TUR-9000": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Технар і мозок команди, холоднокровний та точний.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561198392497468",
       instagram: "",
@@ -149,7 +149,7 @@ const playersInfo = {
     }
   },
   "Prok": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Надійний тіммейт, без якого жоден бій не буде таким, як раніше.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199119910502",
       instagram: "",
@@ -157,7 +157,7 @@ const playersInfo = {
     }
   },
   "Ger4eek": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Мисливець, який відчуває слабину суперника за версту, у пасивному режимі.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199223642471",
       instagram: "",
@@ -165,7 +165,7 @@ const playersInfo = {
     }
   },
   "Kiruha": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Імпульсивний і зухвалий, робить шоу на полі бою, у пасивному режимі.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199046070249",
       instagram: "",
@@ -173,7 +173,7 @@ const playersInfo = {
     }
   },
   "Shootka": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "Молодий, але амбітний — майбутнє команди вже тут, у пасивному режимі.",
     socials: {
       steam: "https://steamcommunity.com/id/1559507142",
       instagram: "",
@@ -181,7 +181,7 @@ const playersInfo = {
     }
   },
   "Ilty": {
-    description: "Майстер з точності та стабільності. Один з ключових членів команди у клатч-ситуаціях.",
+    description: "влучний стрілець, завжди потрапляє в ціль — і в грі, і в житті.",
     socials: {
       steam: "https://steamcommunity.com/id/lItycs/",
       instagram: "",
@@ -464,3 +464,5 @@ document.querySelectorAll(".player-card").forEach(card => {
   modal.querySelector(".modal-backdrop")?.addEventListener("click", closeModal);
 
 })();
+
+
