@@ -818,3 +818,110 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+
+
+/* ==== SOCIAL ICONS (player cards) ==== */
+
+.player-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.player-socials .social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+
+  cursor: pointer;
+  transition: 
+      transform 0.3s ease, 
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* SVG розмір */
+.player-socials .social-icon svg {
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+  fill: white;
+}
+
+/* Кольоровий “залив” як у Uiverse.io */
+.player-socials .social-icon::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 0%;
+  z-index: 1;
+
+  transition: height 0.35s ease-in-out;
+}
+
+/* Discord */
+.social-icon[data-social="discord"]::before {
+  background: #7289da;
+}
+/* Steam */
+.social-icon[data-social="steam"]::before {
+  background: #171d25;
+}
+/* Instagram */
+.social-icon[data-social="instagram"]::before {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e1306c,
+    #fd1f1f
+  );
+}
+
+/* Hover ефект */
+.player-socials .social-icon:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 14px rgba(180, 114, 255, 0.8);
+}
+
+.player-socials .social-icon:hover::before {
+  height: 100%;
+}
+
+/* Адаптивність */
+@media (max-width: 480px) {
+  .player-socials .social-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .player-socials .social-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.player-socials {
+  overflow: visible !important;
+  position: relative;
+  padding-bottom: 12px; /* щоб був запас простору */
+}
+
