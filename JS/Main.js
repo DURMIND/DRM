@@ -104,8 +104,8 @@ const playersInfo = {
     description: "Надихаючий лідер і капітан цього корабля.",
     socials: {
       steam: "https://steamcommunity.com/id/waysiemens/",
-      discord: "https://discord.gg/example",
-      instagram: "https://instagram.com/example"
+      discord: "https://discord.gg/rnnyVrwRfz",
+      instagram: "https://www.instagram.com/waysiemens?igsh=Y2dobm53bTQ4aDJi",
     }
   },
   "SMAKOVV": {
@@ -113,7 +113,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199237357499",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Bareski": {
@@ -121,7 +121,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/id/bAresk1",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Edgar": {
@@ -129,7 +129,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199139831895",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Mental": {
@@ -137,7 +137,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561198949993671",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "TUR-9000": {
@@ -145,7 +145,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561198392497468",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Prok": {
@@ -153,7 +153,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199119910502",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Ger4eek": {
@@ -161,7 +161,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199223642471",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Kiruha": {
@@ -169,7 +169,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199046070249",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Shootka": {
@@ -177,7 +177,7 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/id/1559507142",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   },
   "Ilty": {
@@ -185,17 +185,44 @@ const playersInfo = {
     socials: {
       steam: "https://steamcommunity.com/id/lItycs/",
       instagram: "",
-      twitch: ""
+      discord: "https://discord.gg/rnnyVrwRfz",
     }
   }
   
   // додаєш інших за потреби
 };
 
-"Логіка відкриття інформації про гравців"
+/* ===== Іконки соцмереж (SVG) ===== */
+function getSocialIconSVG(platform) {
+  switch (platform) {
+    case "discord":
+  return `
+    <svg viewBox="0 0 16 16" fill="currentColor">
+      <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+    </svg>
+  `;
+    case "steam":
+  return `
+    <svg viewBox="0 0 16 16" fill="currentColor">
+      <path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z"/>
+      <path d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048"/>
+    </svg>
+  `;
+    case "instagram":
+  return `
+    <svg viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+    </svg>
+  `;
+    default:
+      return "";
+  }
+}
+
+/* ===== Открытие/закрытие карток ===== */
 document.querySelectorAll(".player-card").forEach(card => {
   card.addEventListener("click", () => {
-    // Закривати інші відкриті картки
+
     document.querySelectorAll(".player-card.expanded").forEach(opened => {
       if (opened !== card) opened.classList.remove("expanded");
     });
@@ -210,20 +237,26 @@ document.querySelectorAll(".player-card").forEach(card => {
 
       descBox.textContent = playersInfo[name].description;
 
-      // соц мережі
       socialsBox.innerHTML = "";
+
       for (const [platform, url] of Object.entries(playersInfo[name].socials)) {
         if (url.trim() !== "") {
+
           const icon = document.createElement("a");
           icon.href = url;
           icon.target = "_blank";
-          icon.innerHTML = platform[0].toUpperCase(); // тимчасова буква-іконка
+          icon.className = "social-icon";
+          icon.dataset.social = platform;
+
+          icon.innerHTML = getSocialIconSVG(platform);
+
           socialsBox.appendChild(icon);
         }
       }
     }
   });
 });
+
 
 
 /* ===== TOURNAMENT MODAL & DYNAMIC BRACKETS ===== */
@@ -236,7 +269,7 @@ document.querySelectorAll(".player-card").forEach(card => {
       title: "CS 1 vs 1",
       date: "Жовтень 25, 2025 • 19:00",
       status: "completed", // "live" | "upcoming" | "completed"
-      image: "./photo/cs21v1.png",
+      image: "/photo/cs21v1.png",
       winner: "Ilty",
       description: "Локальний турнір серед гравців команди. Напружені поєдинки та відмінні перестрілки.",
       brackets: [
@@ -464,6 +497,3 @@ document.querySelectorAll(".player-card").forEach(card => {
   modal.querySelector(".modal-backdrop")?.addEventListener("click", closeModal);
 
 })();
-
-
-
