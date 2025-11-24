@@ -118,7 +118,7 @@ body {
    ========================================================= */
 
 .hero {
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -924,4 +924,6 @@ body {
   position: relative;
   padding-bottom: 12px; /* щоб був запас простору */
 }
+
+
 
