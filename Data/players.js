@@ -67,7 +67,7 @@ window.DURMIND_DATA.players = [
   {
     name: "Prok",
     role: "Надійний не те слово.",
-    avatar: ".\\photo\\Players\\Prok.jpg",
+    avatar: ".\\photo\\Players\\prok.jpg",
     description: "Надійний тіммейт, без якого жоден бій не буде таким, як раніше.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199119910502",
@@ -85,9 +85,9 @@ window.DURMIND_DATA.players = [
     }
   },
   {
-    name: "Kiruha",
+    name: "Kiruxa",
     role: "Сонечко команди",
-    avatar: ".\\photo\\Players\\Kiruha.jpg",
+    avatar: ".\\photo\\Players\\kiruha.jpg",
     description: "Завжди приносить світло і тепло в команду, навіть у найтемніші моменти.",
     socials: {
       steam: "https://steamcommunity.com/profiles/76561199046070249",
@@ -97,7 +97,7 @@ window.DURMIND_DATA.players = [
   {
     name: "Shootka",
     role: "Майбутнє команди",
-    avatar: ".\\photo\\Players\\Shootka.jpg",
+    avatar: ".\\photo\\Players\\shootka.jpg",
     description: "Молодий, але амбітний — майбутнє команди вже тут.",
     socials: {
       steam: "https://steamcommunity.com/id/1559507142",
