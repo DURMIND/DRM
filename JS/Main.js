@@ -1,204 +1,16 @@
-const discordInvite = "https://discord.gg/rnnyVrwRfz";
-
-const players = [
-  {
-    name: "Waysiemens",
-    role: "Лідер",
-    avatar: "https://avatars.fastly.steamstatic.com/07509e44e17b8ec831bf8afc8937da22d1c4e569_full.jpg",
-    description: "Надихаючий лідер і капітан цього корабля.",
-    socials: {
-      steam: "https://steamcommunity.com/id/waysiemens/",
-      discord: discordInvite,
-      instagram: "https://www.instagram.com/waysiemens?igsh=Y2dobm53bTQ4aDJi"
-    }
-  },
-  {
-    name: "SMAKOVV",
-    role: "Майстер",
-    avatar: "https://avatars.fastly.steamstatic.com/f448911aa5502dee51341fd6f16b9b8445921a2b_full.jpg",
-    description: "Майстер агресії та енергії, завжди йде першим.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561199237357499",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Bareski",
-    role: "Стратег",
-    avatar: "https://avatars.fastly.steamstatic.com/47b6f525638fffe116447e4c6e44309e746a5051_full.jpg",
-    description: "Стратег і душа компанії, знає, як повернути бій на свою користь.",
-    socials: {
-      steam: "https://steamcommunity.com/id/bAresk1",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Edgar",
-    role: "Джерело позитиву",
-    avatar: "https://avatars.fastly.steamstatic.com/4f787c09d9d0499153f0049c7a5e92522f505078_full.jpg",
-    description: "Джерело позитиву та адреналіну, робить атмосферу живою.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561199139831895",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Mental",
-    role: "Аналітик",
-    avatar: "https://avatars.fastly.steamstatic.com/4b23028a3bf894c44ed0ad8b5eab28c830357d64_full.jpg",
-    description: "Аналітик і філософ команди, бачить глибше за інших.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561198949993671",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "TUR-9000",
-    role: "Технар",
-    avatar: "https://avatars.fastly.steamstatic.com/d6273d62957a51d14af3c72156047ea9dc8775f4_full.jpg",
-    description: "Технар і мозок команди, холоднокровний та точний.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561198392497468",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Prok",
-    role: "Надійний тімейт",
-    avatar: "https://avatars.fastly.steamstatic.com/788563bb5db7136c3fbb5a74094bd99616719978_full.jpg",
-    description: "Надійний тіммейт, без якого жоден бій не буде таким, як раніше.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561199119910502",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Ger4eek",
-    role: "Мисливець",
-    avatar: "https://avatars.fastly.steamstatic.com/b5053c0d8fca283b139357191c54ec74745842fd_full.jpg",
-    description: "Мисливець, який відчуває слабину суперника за версту.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561199223642471",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Kiruha",
-    role: "Шоумен",
-    avatar: "https://avatars.fastly.steamstatic.com/cfe727a38f345c1d5d92c5844f6cf8f5b22c3279_full.jpg",
-    description: "Імпульсивний і зухвалий, робить шоу на полі бою.",
-    socials: {
-      steam: "https://steamcommunity.com/profiles/76561199046070249",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Shootka",
-    role: "Майбутнє команди",
-    avatar: "https://avatars.fastly.steamstatic.com/e3aff17dd67b4d448f209f18a4bdac19d17fbb53_full.jpg",
-    description: "Молодий, але амбітний — майбутнє команди вже тут.",
-    socials: {
-      steam: "https://steamcommunity.com/id/1559507142",
-      discord: discordInvite
-    }
-  },
-  {
-    name: "Ilty",
-    role: "Стрілок",
-    avatar: "https://shared.fastly.steamstatic.com/community_assets/images/items/400910/bdca20f4113c926a80de957d01e7a550fd5fb19f.gif",
-    description: "Влучний стрілець, завжди потрапляє в ціль — і в грі, і в житті.",
-    socials: {
-      steam: "https://steamcommunity.com/id/lItycs/",
-      discord: discordInvite
-    }
-  }
-];
-
-const events = [
-  {
-    id: "cs1v1",
-    title: "CS 1 vs 1",
-    date: "25 жовтня 2025 • 19:00",
-    status: "completed",
-    type: "Local Cup",
-    game: "Counter-Strike 2",
-    format: "Single Elimination • BO1",
-    image: "./photo/cs21v1.png",
-    winner: "Ilty",
-    prize: "Зал слави",
-    mapPool: "Aim / Duel maps",
-    description: "Локальний турнір серед гравців команди. Напружені поєдинки, швидкі дуелі та перший великий запис в історії DURMIND.",
-    highlights: [
-      "Перший великий турнір у хабі DURMIND.",
-      "Фінал TUR-9000 vs Ilty завершився перемогою Ilty.",
-      "Формат підходить для швидких вечірніх івентів у Discord."
-    ],
-    rules: [
-      "Матчі проходять у форматі 1 vs 1.",
-      "Переможець матчу проходить у наступний раунд.",
-      "Фінальний результат фіксується після підтвердження учасниками."
-    ],
-    brackets: [
-      {
-        round: "Quarterfinals",
-        matches: [
-          { p1: "TUR-9000", p2: "SMAKOVV", score: "1 : 0", winner: "TUR-9000" },
-          { p1: "Bareski", p2: "Mental", score: "0 : 1", winner: "Mental" },
-          { p1: "Ger4eek", p2: "Waysiemens", score: "1 : 0", winner: "Ger4eek" }
-        ]
-      },
-      {
-        round: "Semifinals",
-        matches: [
-          { p1: "Mental", p2: "Qawoonchik", score: "1 : 0", winner: "Mental" },
-          { p1: "Ilty", p2: "Ger4eek", score: "1 : 0", winner: "Ilty" },
-          { p1: "TUR-9000", p2: "Mental", score: "1 : 0", winner: "TUR-9000" }
-        ]
-      },
-      {
-        round: "Final",
-        matches: [
-          { p1: "TUR-9000", p2: "Ilty", score: "0 : 1", winner: "Ilty" }
-        ]
-      }
-    ]
-  }
-];
-
-const hallOfFame = {
-  lastChampion: "Ilty",
-  lastEventId: "cs1v1",
-  subtitle: "Архів чемпіонів, MVP, рекордів і моментів DURMIND.",
-  champions: [
-    {
-      player: "Ilty",
-      event: "CS 1 vs 1",
-      title: "Перший чемпіон DURMIND",
-      date: "25 жовтня 2025",
-      badge: "Чемпіон",
-      note: "Перемога у фіналі проти TUR-9000 та перший запис у залі слави."
-    }
-  ],
-  achievements: [
-    { player: "Ilty", type: "Чемпіон", title: "Переможець CS 1 vs 1", description: "Переможець першого локального турніру DURMIND." },
-    { player: "TUR-9000", type: "Фіналіст", title: "Фінальний бос", description: "Дійшов до фіналу та провів ключовий матч турніру." },
-    { player: "Mental", type: "Серія", title: "Тактичний прохід", description: "Сильний прохід крізь сітку та стабільна гра у півфіналах." },
-    { player: "Ger4eek", type: "Момент", title: "Мисливський момент", description: "Один із найпомітніших матчів ранньої стадії турніру." },
-    { player: "Waysiemens", type: "Основа", title: "Ядро комʼюніті", description: "Підтримує структуру команди та атмосферу DURMIND." }
-  ],
-  records: [
-    { label: "Перший чемпіон", value: "Ilty", detail: "CS 1 vs 1" },
-    { label: "Перший фінал", value: "TUR-9000 vs Ilty", detail: "0 : 1" },
-    { label: "Турнірів в архіві", value: "1", detail: "готово до розширення" },
-    { label: "Матчів у першому архіві", value: "7", detail: "за поточною сіткою" }
-  ],
-  media: [
-    { type: "зображення", title: "Обкладинка CS 1 vs 1", description: "Обкладинка першого турніру. Можна замінити на скріншот, постер або хайлайт.", src: "./photo/cs21v1.png" },
-    { type: "відео", title: "Місце для відео", description: "Сюди пізніше можна додати YouTube/Twitch/Discord clip або локальне відео.", src: "" },
-    { type: "момент", title: "Легендарний момент", description: "Плейсхолдер для найсмішнішого або найнапруженішого моменту турніру.", src: "" }
-  ]
+const DURMIND_DATA = window.DURMIND_DATA || {};
+const discordInvite = DURMIND_DATA.discordInvite || "https://discord.gg/rnnyVrwRfz";
+const players = Array.isArray(DURMIND_DATA.players) ? DURMIND_DATA.players : [];
+const events = Array.isArray(DURMIND_DATA.events) ? DURMIND_DATA.events : [];
+const hallOfFame = DURMIND_DATA.hallOfFame || {
+  lastChampion: "",
+  lastEventId: "",
+  subtitle: "",
+  champions: [],
+  achievements: [],
+  records: [],
+  media: []
 };
-
 
 const iconMap = {
   discord: `
@@ -281,8 +93,8 @@ function renderEvents() {
     const coverStyle = event.image ? `style="--event-image: url('${escapeHtml(event.image)}')"` : "";
 
     return `
-      <article class="event-card glass-panel" data-event-id="${escapeHtml(event.id)}" tabindex="0" role="button" aria-label="Відкрити турнір ${escapeHtml(event.title)}">
-        <div class="event-cover" ${coverStyle}>
+      <article class="event-card glass-panel" ${coverStyle} data-event-id="${escapeHtml(event.id)}" tabindex="0" role="button" aria-label="Відкрити турнір ${escapeHtml(event.title)}">
+      <div class="event-cover" ${coverStyle}>
           <span class="event-type">${escapeHtml(event.type || "Event")}</span>
           <span class="status-pill status-${escapeHtml(event.status)}">${statusLabel(event.status)}</span>
         </div>
@@ -432,7 +244,8 @@ function closeEventModal() {
 function buildTournamentModal(event) {
   const participants = getEventParticipants(event);
   const matches = getEventMatches(event);
-  const coverStyle = event.image ? `style="--event-image: url('${escapeHtml(event.image)}')"` : "";
+  const imagePath = event.image ? String(event.image).replaceAll("\\", "/") : "";
+  const coverStyle = imagePath ? `style="--event-image: url('${escapeHtml(imagePath)}');"` : "";
 
   return `
     <div class="tournament-shell">
