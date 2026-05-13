@@ -120,9 +120,24 @@ const events = [
     title: "CS 1 vs 1",
     date: "25 жовтня 2025 • 19:00",
     status: "completed",
+    type: "Local Cup",
+    game: "Counter-Strike 2",
+    format: "Single Elimination • BO1",
     image: "./photo/cs21v1.png",
     winner: "Ilty",
+    prize: "Зал слави",
+    mapPool: "Aim / Duel maps",
     description: "Локальний турнір серед гравців команди. Напружені поєдинки, швидкі дуелі та перший великий запис в історії DURMIND.",
+    highlights: [
+      "Перший великий турнір у хабі DURMIND.",
+      "Фінал TUR-9000 vs Ilty завершився перемогою Ilty.",
+      "Формат підходить для швидких вечірніх івентів у Discord."
+    ],
+    rules: [
+      "Матчі проходять у форматі 1 vs 1.",
+      "Переможець матчу проходить у наступний раунд.",
+      "Фінальний результат фіксується після підтвердження учасниками."
+    ],
     brackets: [
       {
         round: "Quarterfinals",
@@ -149,6 +164,41 @@ const events = [
     ]
   }
 ];
+
+const hallOfFame = {
+  lastChampion: "Ilty",
+  lastEventId: "cs1v1",
+  subtitle: "Архів чемпіонів, MVP, рекордів і моментів DURMIND.",
+  champions: [
+    {
+      player: "Ilty",
+      event: "CS 1 vs 1",
+      title: "Перший чемпіон DURMIND",
+      date: "25 жовтня 2025",
+      badge: "Чемпіон",
+      note: "Перемога у фіналі проти TUR-9000 та перший запис у залі слави."
+    }
+  ],
+  achievements: [
+    { player: "Ilty", type: "Чемпіон", title: "Переможець CS 1 vs 1", description: "Переможець першого локального турніру DURMIND." },
+    { player: "TUR-9000", type: "Фіналіст", title: "Фінальний бос", description: "Дійшов до фіналу та провів ключовий матч турніру." },
+    { player: "Mental", type: "Серія", title: "Тактичний прохід", description: "Сильний прохід крізь сітку та стабільна гра у півфіналах." },
+    { player: "Ger4eek", type: "Момент", title: "Мисливський момент", description: "Один із найпомітніших матчів ранньої стадії турніру." },
+    { player: "Waysiemens", type: "Основа", title: "Ядро комʼюніті", description: "Підтримує структуру команди та атмосферу DURMIND." }
+  ],
+  records: [
+    { label: "Перший чемпіон", value: "Ilty", detail: "CS 1 vs 1" },
+    { label: "Перший фінал", value: "TUR-9000 vs Ilty", detail: "0 : 1" },
+    { label: "Турнірів в архіві", value: "1", detail: "готово до розширення" },
+    { label: "Матчів у першому архіві", value: "7", detail: "за поточною сіткою" }
+  ],
+  media: [
+    { type: "зображення", title: "Обкладинка CS 1 vs 1", description: "Обкладинка першого турніру. Можна замінити на скріншот, постер або хайлайт.", src: "./photo/cs21v1.png" },
+    { type: "відео", title: "Місце для відео", description: "Сюди пізніше можна додати YouTube/Twitch/Discord clip або локальне відео.", src: "" },
+    { type: "момент", title: "Легендарний момент", description: "Плейсхолдер для найсмішнішого або найнапруженішого моменту турніру.", src: "" }
+  ]
+};
+
 
 const iconMap = {
   discord: `
@@ -204,26 +254,63 @@ function statusLabel(status) {
   return labels[status] || "Upcoming";
 }
 
+function getEventParticipants(event) {
+  const names = new Set();
+  (event.brackets || []).forEach((round) => {
+    (round.matches || []).forEach((match) => {
+      if (match.p1) names.add(match.p1);
+      if (match.p2) names.add(match.p2);
+    });
+  });
+  return [...names];
+}
+
+function getEventMatches(event) {
+  return (event.brackets || []).flatMap((round) =>
+    (round.matches || []).map((match) => ({ ...match, round: round.round }))
+  );
+}
+
 function renderEvents() {
   const grid = document.getElementById("eventsGrid");
   if (!grid) return;
 
-  grid.innerHTML = events.map((event) => `
-    <article class="event-card glass-panel" data-event-id="${escapeHtml(event.id)}" tabindex="0" role="button" aria-label="Відкрити турнір ${escapeHtml(event.title)}">
-      <div class="event-card-head">
-        <div>
-          <span class="event-card-meta">${escapeHtml(event.date)}</span>
-          <h3>${escapeHtml(event.title)}</h3>
+  grid.innerHTML = events.map((event) => {
+    const participants = getEventParticipants(event);
+    const matches = getEventMatches(event);
+    const coverStyle = event.image ? `style="--event-image: url('${escapeHtml(event.image)}')"` : "";
+
+    return `
+      <article class="event-card glass-panel" data-event-id="${escapeHtml(event.id)}" tabindex="0" role="button" aria-label="Відкрити турнір ${escapeHtml(event.title)}">
+        <div class="event-cover" ${coverStyle}>
+          <span class="event-type">${escapeHtml(event.type || "Event")}</span>
+          <span class="status-pill status-${escapeHtml(event.status)}">${statusLabel(event.status)}</span>
         </div>
-        <span class="status-pill status-${escapeHtml(event.status)}">${statusLabel(event.status)}</span>
-      </div>
-      <p>${escapeHtml(event.description)}</p>
-      <div class="event-card-footer">
-        <span>Winner: ${escapeHtml(event.winner || "—")}</span>
-        <span>Open bracket →</span>
-      </div>
-    </article>
-  `).join("");
+
+        <div class="event-body">
+          <div class="event-title-block">
+            <div class="event-meta-row">
+              <span class="event-meta-pill">${escapeHtml(event.date)}</span>
+              <span class="event-meta-pill">${escapeHtml(event.game || "Game")}</span>
+            </div>
+            <h3>${escapeHtml(event.title)}</h3>
+            <p>${escapeHtml(event.description)}</p>
+          </div>
+
+          <div class="event-stats-row">
+            <span class="event-stat-pill"><strong>${participants.length}</strong> players</span>
+            <span class="event-stat-pill"><strong>${matches.length}</strong> matches</span>
+            <span class="event-stat-pill">${escapeHtml(event.format || "Custom format")}</span>
+          </div>
+
+          <div class="event-action-row">
+            <span class="event-winner">Winner: <strong>${escapeHtml(event.winner || "—")}</strong></span>
+            <span class="event-open-link">Open tournament →</span>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
 
   grid.querySelectorAll(".event-card").forEach((card) => {
     const open = () => openEventModal(card.dataset.eventId);
@@ -316,35 +403,23 @@ const modal = document.getElementById("eventModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalMeta = document.getElementById("modalMeta");
 const modalStatus = document.getElementById("modalStatus");
-const modalImage = document.getElementById("modalImage");
-const modalDescription = document.getElementById("modalDescription");
-const modalWinner = document.getElementById("modalWinner");
-const bracketsWrap = document.getElementById("bracketsWrap");
+const modalContent = document.querySelector("#eventModal .modal-content");
 
 function openEventModal(eventId) {
   const event = events.find((item) => item.id === eventId);
-  if (!event || !modal) return;
+  if (!event || !modal || !modalContent) return;
 
   modalTitle.textContent = event.title;
-  modalMeta.textContent = event.date;
+  modalMeta.textContent = `${event.date} • ${event.game || "Game"} • ${event.format || "Custom format"}`;
   modalStatus.textContent = statusLabel(event.status);
   modalStatus.className = `status-pill status-${event.status}`;
-  modalDescription.textContent = event.description;
-  modalWinner.textContent = event.winner || "—";
-
-  if (event.image) {
-    modalImage.src = event.image;
-    modalImage.alt = event.title;
-    modalImage.classList.remove("is-hidden");
-  } else {
-    modalImage.classList.add("is-hidden");
-  }
-
-  bracketsWrap.innerHTML = buildBrackets(event.brackets || []);
+  modalContent.innerHTML = buildTournamentModal(event);
 
   modal.classList.add("visible");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+
+  activateTournamentTabs(modalContent);
 }
 
 function closeEventModal() {
@@ -352,6 +427,126 @@ function closeEventModal() {
   modal.classList.remove("visible");
   modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
+}
+
+function buildTournamentModal(event) {
+  const participants = getEventParticipants(event);
+  const matches = getEventMatches(event);
+  const coverStyle = event.image ? `style="--event-image: url('${escapeHtml(event.image)}')"` : "";
+
+  return `
+    <div class="tournament-shell">
+      <section class="tournament-hero">
+        <div class="tournament-cover" ${coverStyle} aria-label="${escapeHtml(event.title)} cover"></div>
+
+        <div class="tournament-summary">
+          <p>${escapeHtml(event.description)}</p>
+          <div class="tournament-quick-stats">
+            <div class="quick-stat"><span>Winner</span><strong>${escapeHtml(event.winner || "—")}</strong></div>
+            <div class="quick-stat"><span>Players</span><strong>${participants.length}</strong></div>
+            <div class="quick-stat"><span>Matches</span><strong>${matches.length}</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="tournament-tabs" aria-label="Меню деталей турніру">
+        <button class="tournament-tab is-active" type="button" data-tab="overview">Огляд</button>
+        <button class="tournament-tab" type="button" data-tab="bracket">Сітка</button>
+        <button class="tournament-tab" type="button" data-tab="matches">Матчі</button>
+        <button class="tournament-tab" type="button" data-tab="players">Учасники</button>
+      </nav>
+
+      <section class="tournament-panel is-active" data-panel="overview">
+        ${buildOverviewPanel(event, participants, matches)}
+      </section>
+
+      <section class="tournament-panel" data-panel="bracket">
+        <div class="brackets tournament-brackets">${buildBrackets(event.brackets || [])}</div>
+      </section>
+
+      <section class="tournament-panel" data-panel="matches">
+        ${buildMatchesPanel(matches)}
+      </section>
+
+      <section class="tournament-panel" data-panel="players">
+        ${buildParticipantsPanel(participants, event.winner)}
+      </section>
+    </div>
+  `;
+}
+
+function buildOverviewPanel(event, participants, matches) {
+  const highlights = Array.isArray(event.highlights) && event.highlights.length
+    ? event.highlights
+    : ["Інформація про ключові моменти турніру буде додана пізніше."];
+
+  const rules = Array.isArray(event.rules) && event.rules.length
+    ? event.rules
+    : ["Правила турніру поки не вказані."];
+
+  return `
+    <div class="tournament-overview-grid">
+      <article class="info-card">
+        <span>Format</span>
+        <strong>${escapeHtml(event.format || "Custom format")}</strong>
+        <p>${escapeHtml(event.game || "Game")} • ${escapeHtml(event.mapPool || "Map pool not specified")}</p>
+      </article>
+      <article class="info-card">
+        <span>Reward</span>
+        <strong>${escapeHtml(event.prize || "Community recognition")}</strong>
+        <p>Переможець потрапляє в історію турнірів DURMIND.</p>
+      </article>
+      <article class="info-card">
+        <span>Highlights</span>
+        <strong>${highlights.length} notes</strong>
+        <p>${highlights.map((item) => `• ${escapeHtml(item)}`).join("<br>")}</p>
+      </article>
+      <article class="info-card">
+        <span>Rules</span>
+        <strong>${rules.length} rules</strong>
+        <p>${rules.map((item) => `• ${escapeHtml(item)}`).join("<br>")}</p>
+      </article>
+    </div>
+  `;
+}
+
+function buildParticipantsPanel(participants, winner) {
+  if (!participants.length) {
+    return `<p class="modal-meta">Учасники поки не вказані.</p>`;
+  }
+
+  return `
+    <div class="participants-grid">
+      ${participants.map((name) => `
+        <article class="participant-card ${name === winner ? "is-winner" : ""}">
+          <span>${name === winner ? "Winner" : "Player"}</span>
+          <strong>${escapeHtml(name)}</strong>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function buildMatchesPanel(matches) {
+  if (!matches.length) {
+    return `<p class="modal-meta">Матчі поки відсутні.</p>`;
+  }
+
+  return `
+    <div class="matches-list">
+      ${matches.map((match) => `
+        <article class="match-row-card">
+          <span>${escapeHtml(match.round)}</span>
+          <div class="match-row-players">
+            <strong>${escapeHtml(match.p1 || "—")}</strong>
+            &nbsp;vs&nbsp;
+            <strong>${escapeHtml(match.p2 || "—")}</strong>
+          </div>
+          <div class="match-row-score">${escapeHtml(match.score || "—")}</div>
+        </article>
+      `).join("")}
+    </div>
+  `;
 }
 
 function buildBrackets(brackets) {
@@ -365,9 +560,9 @@ function buildBrackets(brackets) {
       ${(round.matches || []).map((match) => `
         <article class="match-card ${match.winner ? "winner" : ""}">
           <div class="match-player">
-            <span class="player-left">${escapeHtml(match.p1 || "—")}</span>
+            <span class="player-left ${match.winner === match.p1 ? "is-match-winner" : ""}">${escapeHtml(match.p1 || "—")}</span>
             <strong class="match-score">${escapeHtml(match.score || "—")}</strong>
-            <span class="player-right">${escapeHtml(match.p2 || "—")}</span>
+            <span class="player-right ${match.winner === match.p2 ? "is-match-winner" : ""}">${escapeHtml(match.p2 || "—")}</span>
           </div>
         </article>
       `).join("")}
@@ -375,20 +570,237 @@ function buildBrackets(brackets) {
   `).join("");
 }
 
+function activateTournamentTabs(root) {
+  const tabs = root.querySelectorAll(".tournament-tab");
+  const panels = root.querySelectorAll(".tournament-panel");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.tab;
+      tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.panel === target));
+    });
+  });
+}
+
+
+const hallModal = document.getElementById("hallModal");
+const hallContent = document.getElementById("hallContent");
+const openHallButton = document.getElementById("openHallOfFame");
+
+function findPlayer(name) {
+  return players.find((player) => player.name === name) || null;
+}
+
+function getAchievementCount(name) {
+  return hallOfFame.achievements.filter((item) => item.player === name).length;
+}
+
+function renderHallPreview() {
+  const button = openHallButton;
+  if (!button) return;
+
+  const champion = findPlayer(hallOfFame.lastChampion);
+  const championEvent = events.find((event) => event.id === hallOfFame.lastEventId);
+  if (!champion || !championEvent) return;
+
+  const image = button.querySelector(".fame-avatar-wrap img");
+  const name = button.querySelector(".fame-showcase-top strong");
+  const eventLabel = button.querySelector(".fame-champion-info span");
+  const title = button.querySelector(".fame-champion-info strong");
+
+  if (image) {
+    image.src = champion.avatar;
+    image.alt = champion.name;
+  }
+  if (name) name.textContent = champion.name;
+  if (eventLabel) eventLabel.textContent = `Чемпіон ${championEvent.title}`;
+  if (title) title.textContent = "Переможець останнього турніру";
+}
+
+function openHallModal() {
+  if (!hallModal || !hallContent) return;
+  hallContent.innerHTML = buildHallModal();
+  hallModal.classList.add("visible");
+  hallModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  activateHallTabs(hallContent);
+}
+
+function closeHallModal() {
+  if (!hallModal) return;
+  hallModal.classList.remove("visible");
+  hallModal.setAttribute("aria-hidden", "true");
+  if (!modal?.classList.contains("visible")) {
+    document.body.classList.remove("modal-open");
+  }
+}
+
+function buildHallModal() {
+  const champion = findPlayer(hallOfFame.lastChampion);
+  const championEvent = events.find((event) => event.id === hallOfFame.lastEventId);
+  const totalAchievements = hallOfFame.achievements.length;
+
+  return `
+    <div class="hall-shell">
+      <section class="hall-hero">
+        <div class="hall-hero-player">
+          <div class="hall-hero-avatar">
+            <img src="${escapeHtml(champion?.avatar || "./photo/DRM.png")}" alt="${escapeHtml(champion?.name || "Чемпіон")}" loading="lazy" />
+          </div>
+          <div>
+            <span class="hall-label">Останній чемпіон</span>
+            <h3>${escapeHtml(champion?.name || "—")}</h3>
+            <p>${escapeHtml(championEvent?.title || "Останній турнір")} • ${escapeHtml(championEvent?.date || "—")}</p>
+          </div>
+        </div>
+        <div class="hall-hero-stats">
+          <div><span>Титули</span><strong>${hallOfFame.champions.length}</strong></div>
+          <div><span>Досягнення</span><strong>${totalAchievements}</strong></div>
+          <div><span>Рекорди</span><strong>${hallOfFame.records.length}</strong></div>
+        </div>
+      </section>
+
+      <nav class="hall-tabs" aria-label="Меню залу слави">
+        <button class="hall-tab is-active" type="button" data-hall-tab="overview">Огляд</button>
+        <button class="hall-tab" type="button" data-hall-tab="champions">Чемпіони</button>
+        <button class="hall-tab" type="button" data-hall-tab="achievements">Досягнення</button>
+        <button class="hall-tab" type="button" data-hall-tab="media">Медіа</button>
+      </nav>
+
+      <section class="hall-panel is-active" data-hall-panel="overview">
+        ${buildHallOverview()}
+      </section>
+      <section class="hall-panel" data-hall-panel="champions">
+        ${buildHallChampions()}
+      </section>
+      <section class="hall-panel" data-hall-panel="achievements">
+        ${buildHallAchievements()}
+      </section>
+      <section class="hall-panel" data-hall-panel="media">
+        ${buildHallMedia()}
+      </section>
+    </div>
+  `;
+}
+
+function buildHallOverview() {
+  return `
+    <div class="hall-overview-grid">
+      ${hallOfFame.records.map((record) => `
+        <article class="hall-record-card">
+          <span>${escapeHtml(record.label)}</span>
+          <strong>${escapeHtml(record.value)}</strong>
+          <p>${escapeHtml(record.detail)}</p>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function buildHallChampions() {
+  return `
+    <div class="hall-champions-list">
+      ${hallOfFame.champions.map((champion) => {
+        const player = findPlayer(champion.player);
+        return `
+          <article class="hall-champion-row">
+            <img src="${escapeHtml(player?.avatar || "./photo/DRM.png")}" alt="${escapeHtml(champion.player)}" loading="lazy" />
+            <div>
+              <span>${escapeHtml(champion.badge)} • ${escapeHtml(champion.date)}</span>
+              <strong>${escapeHtml(champion.player)} — ${escapeHtml(champion.title)}</strong>
+              <p>${escapeHtml(champion.note)}</p>
+            </div>
+          </article>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function buildHallAchievements() {
+  return `
+    <div class="hall-achievements-grid">
+      ${hallOfFame.achievements.map((achievement) => {
+        const player = findPlayer(achievement.player);
+        return `
+          <article class="hall-achievement-card">
+            <div class="hall-achievement-top">
+              <img src="${escapeHtml(player?.avatar || "./photo/DRM.png")}" alt="${escapeHtml(achievement.player)}" loading="lazy" />
+              <span>${escapeHtml(achievement.type)}</span>
+            </div>
+            <strong>${escapeHtml(achievement.title)}</strong>
+            <p>${escapeHtml(achievement.description)}</p>
+            <em>${escapeHtml(achievement.player)} • ${getAchievementCount(achievement.player)} досягнень</em>
+          </article>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function buildHallMedia() {
+  return `
+    <div class="hall-media-grid">
+      ${hallOfFame.media.map((item) => `
+        <article class="hall-media-card ${item.src ? "has-media" : "is-placeholder"}">
+          ${item.src ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}" loading="lazy" />` : `<div class="hall-media-placeholder">${escapeHtml(item.type)}</div>`}
+          <div>
+            <span>${escapeHtml(item.type)}</span>
+            <strong>${escapeHtml(item.title)}</strong>
+            <p>${escapeHtml(item.description)}</p>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function activateHallTabs(root) {
+  const tabs = root.querySelectorAll(".hall-tab");
+  const panels = root.querySelectorAll(".hall-panel");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.hallTab;
+      tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.hallPanel === target));
+      hallContent?.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+}
+
+openHallButton?.addEventListener("click", openHallModal);
+openHallButton?.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openHallModal();
+  }
+});
+
+document.querySelectorAll("[data-close-hall]").forEach((element) => {
+  element.addEventListener("click", closeHallModal);
+});
+
 document.querySelectorAll("[data-close-modal]").forEach((element) => {
   element.addEventListener("click", closeEventModal);
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeEventModal();
+  if (event.key === "Escape") {
+    closeEventModal();
+    closeHallModal();
+  }
 });
 
 renderEvents();
 renderPlayers();
+renderHallPreview();
 
 window.DURMIND = {
   players,
   events,
-  openEventModal
+  hallOfFame,
+  openEventModal,
+  openHallModal
 };
-
