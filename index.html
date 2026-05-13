@@ -55,7 +55,7 @@
         <a href="#stats">Статистика</a>
         <a href="#events">Івенти</a>
         <a href="#team">Команда</a>
-        <a href="#fame">Hall of Fame</a>
+        <a href="#fame">Зал слави</a>
         <a class="nav-cta" href="https://discord.gg/rnnyVrwRfz" target="_blank" rel="noopener">Discord</a>
       </nav>
     </div>
@@ -189,16 +189,16 @@
     <section class="section section-anchor" id="fame">
       <div class="container split-section fame-section">
         <div>
-          <p class="section-kicker">Hall of Fame</p>
+          <p class="section-kicker">Зал слави</p>
           <h2 class="section-title">Зал слави переможців, рекордів і легендарних моментів.</h2>
-          <p class="section-subtitle fame-subtitle">Тут зберігаються чемпіони турнірів, MVP, особливі досягнення, медіа та приховані пасхалки команди.</p>
+          <p class="section-subtitle fame-subtitle">Тут зберігаються чемпіони турнірів, MVP, особливі досягнення, рекорди, фото та відео команди.</p>
         </div>
 
         <button class="fame-showcase glass-panel" id="openHallOfFame" type="button" aria-label="Відкрити розширений зал слави">
           <span class="fame-showcase-glow" aria-hidden="true"></span>
           <span class="fame-showcase-top">
             <span>
-              <small>Last champion</small>
+              <small>Останній чемпіон</small>
               <strong>Ilty</strong>
             </span>
             <span class="fame-crown">★</span>
@@ -209,16 +209,16 @@
               <img src="https://shared.fastly.steamstatic.com/community_assets/images/items/400910/bdca20f4113c926a80de957d01e7a550fd5fb19f.gif" alt="Ilty" loading="lazy" />
             </span>
             <span class="fame-champion-info">
-              <span>CS 1 vs 1 Champion</span>
+              <span>Чемпіон CS 1 vs 1</span>
               <strong>Переможець останнього турніру</strong>
-              <em>Натисни, щоб відкрити повний Hall of Fame →</em>
+              <em>Натисни, щоб відкрити повний зал слави →</em>
             </span>
           </span>
 
           <span class="fame-mini-stats">
             <span><strong>1</strong> титул</span>
             <span><strong>7</strong> матчів</span>
-            <span><strong>MVP</strong> candidate</span>
+            <span><strong>MVP</strong> кандидат</span>
           </span>
         </button>
       </div>
@@ -229,7 +229,7 @@
     <div class="container footer-shell glass-panel">
       <div>
         <strong>DURMIND</strong>
-        <p>Minimal premium community hub для Discord-команди.</p>
+        <p>Преміальний хаб для Discord-команди.</p>
       </div>
       <a class="button button-primary" href="https://discord.gg/rnnyVrwRfz" target="_blank" rel="noopener">Discord</a>
     </div>
@@ -242,7 +242,7 @@
 
       <div class="modal-header">
         <div>
-          <p class="section-kicker">Tournament details</p>
+          <p class="section-kicker">Деталі турніру</p>
           <h2 id="modalTitle">Назва турніру</h2>
           <p id="modalMeta" class="modal-meta"></p>
         </div>
@@ -270,11 +270,11 @@
 
       <div class="modal-header hall-header">
         <div>
-          <p class="section-kicker">DURMIND archive</p>
-          <h2 id="hallModalTitle">Hall of Fame</h2>
-          <p class="modal-meta">Чемпіони, MVP, рекорди, моменти й приховані знахідки команди.</p>
+          <p class="section-kicker">Архів DURMIND</p>
+          <h2 id="hallModalTitle">Зал слави</h2>
+          <p class="modal-meta">Чемпіони, MVP, рекорди, медіа та найкращі моменти команди.</p>
         </div>
-        <span class="status-pill hall-status">Archive</span>
+        <span class="status-pill hall-status">Архів</span>
       </div>
 
       <div class="modal-content hall-content" id="hallContent"></div>
@@ -282,6 +282,10 @@
   </div>
 
 
+  <script src="./Data/site.js"></script>
+  <script src="./Data/players.js"></script>
+  <script src="./Data/events.js"></script>
+  <script src="./Data/hall-of-fame.js"></script>
   <script src="./JS/Main.js"></script>
 </body>
 </html>
